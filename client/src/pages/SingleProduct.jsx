@@ -7,7 +7,7 @@ import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 import { mobile } from "../responsive";
 import { useLocation } from 'react-router-dom'
-import { publicRequest } from "../requestMethod"
+import { publicRequest } from "../requestMethods"
 import { useState, useEffect } from 'react';
 import { useDispatch } from "react-redux"
 import { addProduct } from "../redux/cartRedux"

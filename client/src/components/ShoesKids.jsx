@@ -22,7 +22,6 @@ const Products = ({category,filters,sort}) => {
       try{
         const res = await axios.get(
          "http://localhost:5000/api/products?category=Kids")
-         console.log(res)
         setProducts(res.data);
       } catch(err){
 
