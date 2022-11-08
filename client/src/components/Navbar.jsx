@@ -87,7 +87,8 @@ const Navbar = () => {
          <Link to={`/`} style={linkStyle}><Logo>CIGART.</Logo></Link>
         </Center>
         <Right>
-          <NavbarLinks>Sign In</NavbarLinks>
+          <NavbarLinks><Link to={`/login`} style={linkStyle}>Sign In</Link></NavbarLinks>
+          <NavbarLinks><Link to={`/register`} style={linkStyle}>Register</Link></NavbarLinks>
           <Link to="/cart">
           <NavbarLinks>
             <Badge badgeContent={quantity} color="primary">
