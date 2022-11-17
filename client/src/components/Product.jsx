@@ -94,9 +94,9 @@ const Product = ({item}) => {
       <Price>${item.price}</Price>
       </Info>
       <IconContainer>
-        <Icon>
+        {/* <Icon>
          <ShoppingCart/>
-        </Icon>
+        </Icon> */}
         <Icon>
           <Link to={`/product/${item._id}`}>
          <SearchIcon/>

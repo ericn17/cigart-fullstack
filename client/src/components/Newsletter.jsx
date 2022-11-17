@@ -2,6 +2,8 @@ import styled from 'styled-components'
 import React from 'react'
 import SendIcon from '@mui/icons-material/Send';
 import { mobile } from "../responsive";
+import emailjs from '@emailjs/browser';
+import { useRef } from 'react';
 
 
 const Container = styled.div`
@@ -44,20 +46,39 @@ const Button = styled.button`
   border: none;
   background-color: #008080;
   color: white;
+  cursor: pointer;
 `
 
-
 const Newsletter = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_zxw4v2r', 'template_v3ov577', form.current, 'EhCZ0-sh8V4nYXin-')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
   return (
     <Container>
       <Title>Newsletter</Title>
       <Description>Get timely updates from your favorite products.</Description>
-      <InputContainer>
-        <Input placeholder="Your Email" />
-        <Button>
-          <SendIcon/>
-        </Button>
-      </InputContainer>
+        <form ref={form} onSubmit={sendEmail}>
+        <InputContainer>
+          <Input 
+            placeholder="Email"
+            type="email"
+            name="email"          
+          />
+          <Button>
+            <SendIcon input type="submit" value="Send" />
+          </Button>
+        </InputContainer>
+        </form>
     </Container>
   )
 }

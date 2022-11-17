@@ -49,11 +49,12 @@ const Btn = styled.button`
   cursor: pointer;
   margin: 15px;
   text-decoration: none;
+  transition: all 0.5s ease;
 
-  /* &:hover {
-    background-color: black;
-    color: white;
-  } */
+  &:hover{
+    background-color: #e9f5f5;
+    transform: scale(1.1);
+  }
 `
 
 const InfoContainer = styled.div`

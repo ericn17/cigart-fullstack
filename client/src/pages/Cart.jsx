@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux'
 import StripeCheckout from "react-stripe-checkout"
 import { useState, useEffect } from "react"
 import { userRequest } from '../requestMethods'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const KEY = process.env.REACT_APP_STRIPE;
 
@@ -145,7 +145,13 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `
+
+const linkStyle = {
+  textDecoration: "none",
+  color: "black",
+}
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart)
@@ -170,6 +176,7 @@ const Cart = () => {
     stripeToken && makeRequest();
   },[stripeToken, cart.total, navigate])
 
+  const quantity = useSelector(state=> state.cart.quantity)
   return (
     <Container>
       <Navbar/>
@@ -177,9 +184,9 @@ const Cart = () => {
       <Wrapper>
         <Title>Shopping Cart</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <TopButton><Link to ={`/`} style={linkStyle}>CONTINUE SHOPPING</Link></TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({quantity})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
