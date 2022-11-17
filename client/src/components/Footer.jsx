@@ -8,6 +8,7 @@ import RoomIcon from '@mui/icons-material/Room';
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom"
 
 
 const Container = styled.div`
@@ -83,6 +84,11 @@ const Payment = styled.img`
   width: 50%;
 `
 
+const linkStyle = {
+  textDecoration: "none",
+  color: "black",
+}
+
 const Footer = () => {
   return (
     <Container>
@@ -92,28 +98,52 @@ const Footer = () => {
           A business big enough that it could be listed on the NASDAQ goes belly up. Disappears! It ceases to exist without me. No, you clearly don't know who you're talking to, so let me clue you in. I am not in danger, Skyler. I AM the danger! A guy opens his door and gets shot and you think that of me? No. I am the one who knocks!
         </Description>
         <SocialContainer>
+          <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.facebook.com/"
+            >
           <SocialIcon color="3B5999">
             <FacebookIcon />
           </SocialIcon>
+          </a>
+          <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.instagram.com/"
+           >
           <SocialIcon color="E4405F">
             <InstagramIcon />
           </SocialIcon>
+          </a>
+          <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.twitter.com/"
+            >
           <SocialIcon color="55ACEE">
             <TwitterIcon />
           </SocialIcon>
+          </a>
+          <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://www.pinterest.com/"
+            >
           <SocialIcon color="E60023">
             <PinterestIcon />
           </SocialIcon>
+          </a>
         </SocialContainer>
       </Left>
       <Center>
         <Title>Useful Links</Title>
         <List>
-          <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Men's Shoe</ListItem>
-          <ListItem>Women's Shoe</ListItem>
-          <ListItem>Kids' Shoe</ListItem>
+          <ListItem><Link to={`/`} style={linkStyle}>Home</Link></ListItem>
+          <ListItem><Link to={`/cart`} style={linkStyle}>Cart</Link></ListItem>
+          <ListItem><Link to={`/products/men`} style={linkStyle}>Men</Link></ListItem>
+          <ListItem><Link to={`/products/women`} style={linkStyle}>Women</Link></ListItem>
+          <ListItem><Link to={`/products/kids`} style={linkStyle}>Kids</Link></ListItem>
           <ListItem>Sale</ListItem>
           <ListItem>My Account</ListItem>
           <ListItem>Order Tracking</ListItem>

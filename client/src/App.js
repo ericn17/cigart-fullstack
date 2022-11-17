@@ -9,12 +9,14 @@ import Cart from "./pages/Cart"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Success from "./pages/Success";
 import { useSelector } from "react-redux";
+import ScrollToTop from "./components/ScrollToTop"
 
 
 const App = () => {
   const user = useSelector((state)=>state.user.currentUser )
   return (
     <Router>
+      <ScrollToTop>
       <Routes>
         <Route path="/" element = {<Home />} />
         <Route path="/products/men" element = {<Men />} />
@@ -26,6 +28,7 @@ const App = () => {
         <Route path="/cart" element = {<Cart />} />
         <Route path="/success" element = {<Success />} />
       </Routes>
+      </ScrollToTop>
     </Router>
   );
 };
