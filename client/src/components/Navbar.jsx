@@ -6,6 +6,10 @@ import ShoppingCart from '@mui/icons-material/ShoppingCartOutlined';
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import SearchResults from './SearchResults';
+
 
 
 const Container = styled.div`
@@ -22,26 +26,6 @@ const Left = styled.div`
 flex: 1;
 display: flex;
 align-items: center;
-`
-const Language = styled.span`
-  font-size: 18px;
-  cursor: pointer;
-  margin-left: 25px;
-  ${mobile({ display: "none" })}
-`
-
-const SearchContainer = styled.div`
-  border: 0.5px solid lightgray;
-  display: flex;
-  align-items: center;
-  margin-left: 25px;
-  padding: 5px;
-  ${mobile({ display: "none" })}
-`
-
-const Input = styled.input`
-  border:none;
-  ${mobile({ width: "50px" })}
 `
 const Center = styled.div`
 flex: 1;
@@ -62,6 +46,27 @@ justify-content: flex-end;
 ${mobile({ flex: 2, justifyContent: "center" })}
 `
 
+const SearchContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 100px;
+  margin-right: 50px;
+  border: 0.5px solid lightgray;
+`
+
+const SearchBox = styled.div`
+  display: flex;
+  padding: 5px;
+  ${mobile({ display: "none" })}
+`
+
+const Input = styled.input`
+  border:none;
+  ${mobile({ width: "50px" })};
+  display: flex;
+  width: 285px;
+`
+
 const NavbarLinks = styled.div`
   font-size: 18px;
   cursor: pointer;
@@ -75,6 +80,20 @@ const linkStyle = {
 
 const Navbar = () => {
   const quantity = useSelector(state=> state.cart.quantity)
+
+  const [products, setProducts] = useState("");
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await axios.get(`http://localhost:5000/api/products?q=${products}`);
+      setData(res.data);
+    };
+    if (products.length === 0 || products.length > 2) fetchData();
+  }, [products]);
+
+
+
   return (
     <Container>
       <Wrapper>
@@ -96,10 +115,17 @@ const Navbar = () => {
             </Badge>
           </NavbarLinks>
           </Link>
-          <Language>EN</Language>
-          <SearchContainer>
-            <Input placeholder="Search"/>
-            <SearchIcon style={{color:"gray", fontSize: "20px"}}/>
+          <SearchContainer>   
+            <SearchBox>
+              <Input 
+                type="search"
+                placeholder="Search"
+                className="search"
+                onChange={(e) => setProducts(e.target.value.toLowerCase())}
+              />
+              <SearchIcon style={{color:"gray", fontSize: "20px"}}/>
+            </SearchBox>  
+            <SearchResults data={data} />
           </SearchContainer>
         </Right>
       </Wrapper>
