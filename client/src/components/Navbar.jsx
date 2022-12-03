@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import SearchResults from './SearchResults';
+
 
 
 
@@ -59,12 +59,24 @@ const SearchBox = styled.div`
   padding: 5px;
   ${mobile({ display: "none" })}
 `
+const SearchResults = styled.div`
+  margin-top: 5px;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  overflow-y: auto;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+`
 
 const Input = styled.input`
   border:none;
   ${mobile({ width: "50px" })};
   display: flex;
-  width: 285px;
+  width: 200px;
 `
 
 const NavbarLinks = styled.div`
@@ -86,10 +98,10 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const res = await axios.get(`http://localhost:5000/api/products?q=${products}`);
+      const res = await axios.get(`http://localhost:5000/api/products`);
       setData(res.data);
     };
-    if (products.length === 0 || products.length > 2) fetchData();
+    fetchData();
   }, [products]);
 
 
@@ -125,7 +137,22 @@ const Navbar = () => {
               />
               <SearchIcon style={{color:"gray", fontSize: "20px"}}/>
             </SearchBox>  
-            <SearchResults data={data} />
+            {products.length !== 0 && (
+            <SearchResults>
+                {data
+                .filter((item) => {
+                  return products.toLowerCase() === '' 
+                  ? item 
+                  : item.title.toLowerCase().includes(products)
+                }).map((item) => (
+                  <Link style={linkStyle} to={`/product/${item._id}`}>
+                  <tr key={item.id}>
+                    <td>{item.title}</td>
+                  </tr>
+                  </Link>
+                 ))}
+            </SearchResults>
+             )}
           </SearchContainer>
         </Right>
       </Wrapper>
