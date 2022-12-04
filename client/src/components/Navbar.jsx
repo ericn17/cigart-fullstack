@@ -49,9 +49,9 @@ ${mobile({ flex: 2, justifyContent: "center" })}
 const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 100px;
-  margin-right: 30px;
-  border: 0.5px solid lightgray;
+  margin-left: 75px;
+  margin-right: 10px;
+  border: 0.5px solid black;
   position: relative;
 `
 
@@ -59,10 +59,11 @@ const SearchBox = styled.div`
   display: flex;
   padding: 5px;
   ${mobile({ display: "none" })}
+  width: 250px;
 `
 const SearchResults = styled.div`
   margin-top: 33px;
-  width: 210px;
+  width: 240px;
   overflow: 
   overflow-y: auto;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -137,7 +138,7 @@ const Navbar = () => {
                 className="search"
                 onChange={(e) => setProducts(e.target.value.toLowerCase())}
               />
-              <SearchIcon style={{color:"gray", fontSize: "20px"}}/>
+              <SearchIcon style={{color:"gray", fontSize: "20px", marginLeft: "30px"}}/>
             </SearchBox>  
             {products.length !== 0 && (
             <SearchResults>
