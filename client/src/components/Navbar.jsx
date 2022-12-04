@@ -13,7 +13,7 @@ import axios from 'axios';
 
 
 const Container = styled.div`
-  ${mobile({ height: "50px" })}
+  ${mobile({ height: "50px" })};
 `
 const Wrapper = styled.div`
   padding: 10px 20px;
@@ -50,8 +50,9 @@ const SearchContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 100px;
-  margin-right: 50px;
+  margin-right: 30px;
   border: 0.5px solid lightgray;
+  position: relative;
 `
 
 const SearchBox = styled.div`
@@ -60,16 +61,17 @@ const SearchBox = styled.div`
   ${mobile({ display: "none" })}
 `
 const SearchResults = styled.div`
-  margin-top: 5px;
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
+  margin-top: 33px;
+  width: 210px;
+  overflow: 
   overflow-y: auto;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: white;
   display: flex;
   flex-direction: column;
   padding: 10px;
+  z-index: 100;
+  position: absolute;
 `
 
 const Input = styled.input`

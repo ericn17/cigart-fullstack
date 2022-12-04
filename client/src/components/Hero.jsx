@@ -10,12 +10,6 @@ const Container = styled.div`
   display: flex;
 `
 
-// const Wrapper = styled.div`
-//   height: 100vh;
-//   width: 100vw;
-//   display: flex;
-//   position: relative;
-// `
 const HeroSection = styled.div`
   width: 100%;
   position: relative;
